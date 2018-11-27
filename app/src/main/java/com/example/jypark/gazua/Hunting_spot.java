@@ -53,7 +53,7 @@ public class Hunting_spot extends AppCompatActivity implements OnMapReadyCallbac
                         .title("커피향기")
                         .snippet("아메리카노+프레즐"));
         */
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(LOC, 12));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(LOC, 9));
     }
 
 }
