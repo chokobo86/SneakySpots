@@ -2,6 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jypark.gazua">
 
+    <!-- 퍼미션 추가 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.example.playdata.step17_googlemap.permission.MAPS_RECEIVE"
+        android:label="signature" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,7 +26,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".ColAchActivity"></activity>
+        <activity android:name=".Hunting_spot"></activity>
         <activity android:name=".Area"></activity>
+
+        <!-- 인증키 -->
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAq6mAzWeHV4Ws0Lh7HoZuYB8HSypCNk5c" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
     </application>
 
 </manifest>
