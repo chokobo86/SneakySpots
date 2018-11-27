@@ -1,6 +1,7 @@
 package com.example.jypark.gazua;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    Button start, signUp;
+    Button start, signUp, test;
     View dialogView;
     EditText logId, logPass, signId, signPass, signName, signAddr, signPhone;
     @Override
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         start=findViewById(R.id.start);
         signUp=findViewById(R.id.signUp);
+        test=findViewById(R.id.test);
 
 //START-------------------------------------------------------------------------------------------
         start.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +92,16 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 dlg.show();
+            }
+        });
+
+
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent=new Intent(getApplicationContext(), Area.class);  //AndroidManifast.xml 등록
+                startActivity(myIntent);
             }
         });
     }
