@@ -28,6 +28,7 @@
         <activity android:name=".ColAchActivity"></activity>
         <activity android:name=".Hunting_spot"></activity>
         <activity android:name=".Area"></activity>
+        <activity android:name=".rankInfoActivity"></activity>
 
         <!-- 인증키 -->
         <meta-data android:name="com.google.android.gms.version"

@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    Button start, signUp, test;
+    Button start, signUp, test, rank;
     View dialogView;
     EditText logId, logPass, signId, signPass, signName, signAddr, signPhone;
     @Override
@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         start=findViewById(R.id.start);
         signUp=findViewById(R.id.signUp);
         test=findViewById(R.id.test);
+        rank=findViewById(R.id.rank);
 
 //START-------------------------------------------------------------------------------------------
         start.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +104,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent myIntent=new Intent(getApplicationContext(), Area.class);  //AndroidManifast.xml 등록
+                startActivity(myIntent);
+            }
+        });
+
+
+        rank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent=new Intent(getApplicationContext(), rankInfoActivity.class);  //AndroidManifast.xml 등록
                 startActivity(myIntent);
             }
         });
