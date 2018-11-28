@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         logId = dialogView.findViewById(R.id.logId);
                         logPass = dialogView.findViewById(R.id.logPass);
-                        Intent myIntent=new Intent(getApplicationContext(), ColAchActivity.class);     // AndroidManifast.xml 등록
+                        Intent myIntent=new Intent(getApplicationContext(), CarouselActivity.class);     // AndroidManifast.xml 등록
                         startActivity(myIntent);
                     }
                 });
