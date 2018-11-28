@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/action_ranks"
+        android:enabled="true"
+        android:icon="@drawable/ic_ranks"
+        android:title="Ranks"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_hunting"
+        android:enabled="true"
+        android:icon="@drawable/ic_hunting"
+        android:title="Hunting Spots"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_collections"
+        android:enabled="true"
+        android:icon="@drawable/ic_collections"
+        android:title="Collections"
+        app:showAsAction="ifRoom"/>
+</menu>
