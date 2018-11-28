@@ -27,11 +27,23 @@ View toastView;
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Hunting_spot.class);
-                intent.putExtra("x",37.566481);
-                intent.putExtra("y",126.977914);
+                intent.putExtra("x",37.527182);
+                intent.putExtra("y",126.981133);
                 startActivityForResult(intent, 0);
             }
         });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Hunting_spot.class);
+                intent.putExtra("x",37.734868);
+                intent.putExtra("y",128.340878);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+
 
        /* button1.setOnClickListener(new View.OnClickListener() {
             @Override
