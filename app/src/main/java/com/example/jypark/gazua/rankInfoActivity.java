@@ -3,20 +3,18 @@ package com.example.jypark.gazua;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 
-public class rankInfoActivity extends AppCompatActivity {
+public class RankInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rank);
+        setContentView(R.layout.activity_rankinfo);
 
 
         setTitle("OTHER USER INFO");

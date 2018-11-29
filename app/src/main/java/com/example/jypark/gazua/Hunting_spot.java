@@ -8,9 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Hunting_spot extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -18,7 +16,7 @@ public class Hunting_spot extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hunting_spot);
+        setContentView(R.layout.activity_hunting);
 
         // 위성, 지형, 일반 지도
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);

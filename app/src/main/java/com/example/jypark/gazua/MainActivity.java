@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogView = View.inflate(MainActivity.this, R.layout.login_main,null);
+                dialogView = View.inflate(MainActivity.this, R.layout.activity_login,null);
 
                 AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
                 dlg.setTitle("LOGIN");
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                dialogView = View.inflate(MainActivity.this, R.layout.sign_main,null);
+                dialogView = View.inflate(MainActivity.this, R.layout.activity_signup,null);
 
                 AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
                 dlg.setTitle("SIGNUP");
@@ -112,9 +112,11 @@ public class MainActivity extends AppCompatActivity {
         rank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent=new Intent(getApplicationContext(), rankInfoActivity.class);  //AndroidManifast.xml 등록
+                Intent myIntent=new Intent(getApplicationContext(), RankInfoActivity.class);  //AndroidManifast.xml 등록
                 startActivity(myIntent);
             }
         });
     }
+
+
 }

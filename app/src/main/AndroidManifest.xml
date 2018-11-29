@@ -28,9 +28,9 @@
         <activity android:name=".ColAchActivity"></activity>
         <activity android:name=".Hunting_spot"></activity>
         <activity android:name=".Area"></activity>
-        <activity android:name=".rankInfoActivity"></activity>
+        <activity android:name=".RankInfoActivity"></activity>
         <activity android:name=".CarouselActivity"></activity>
-
+        <activity android:name=".RanksActivity"></activity>
         <!-- 인증키 -->
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

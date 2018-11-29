@@ -1,16 +1,12 @@
 package com.example.jypark.gazua;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TabHost;
@@ -20,7 +16,7 @@ public class ColAchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.collect_achiev);
+        setContentView(R.layout.activity_colach);
 
         final GridView gv=(GridView)findViewById(R.id.gridView1);
         MyGridAdapter gAdapter = new MyGridAdapter(this);
