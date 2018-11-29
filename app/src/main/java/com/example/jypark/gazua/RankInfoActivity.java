@@ -18,10 +18,10 @@ public class RankInfoActivity extends AppCompatActivity {
 
 
         setTitle("OTHER USER INFO");
-       // Gallery gallery=findViewById(R.id.gallery1);
-       HorizontalScrollView gallery=(HorizontalScrollView)findViewById(R.id.gallery1);
+        // Gallery gallery=findViewById(R.id.gallery1);
+        HorizontalScrollView gallery=(HorizontalScrollView)findViewById(R.id.gallery1);
 
-      MyGalleryAdapter galAdapter = new MyGalleryAdapter(this);
+        MyGalleryAdapter galAdapter = new MyGalleryAdapter(this);
         //gallery.setAdapter(galAdapter);
 
     }
@@ -49,6 +49,7 @@ public class RankInfoActivity extends AppCompatActivity {
             final int pos=position;
 
             return imageView;
+
         }
 
         @Override
