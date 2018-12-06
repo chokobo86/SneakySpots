@@ -1,5 +1,6 @@
 package com.example.jypark.gazua;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Geocoder;
@@ -99,5 +100,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }
