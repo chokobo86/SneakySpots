@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.PageTwoFragment"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <ImageView android:layout_width="80dp" android:layout_height="80dp" android:background="#cc0000"/>
+        <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TableRow>
+                <ImageView android:layout_width="210dp" android:layout_height="24dp" android:background="#aaaa00"/>
+            </TableRow>
+            <TableRow>
+                <ImageView android:layout_width="210dp" android:layout_height="56dp" android:background="#00aa00"/>
+            </TableRow>
+        </TableLayout>
+        <ImageView android:layout_width="80dp" android:layout_height="80dp" android:background="#cc0000"/>
+
+    </LinearLayout>
+
+</LinearLayout>

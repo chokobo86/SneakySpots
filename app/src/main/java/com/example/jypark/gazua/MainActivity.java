@@ -17,7 +17,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    Button start, signUp, test, rank;
+    Button start, signUp;
     View dialogView;
     EditText logId, logPass, EMAIL, PASSWORD, NICKNAME, NATIONALITY, DETAIL, PHOTO, X, Y;
     String sEmail, sPassword, sNickname, sNationality, sDetail, sPhoto="basic", sX, sY;
@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         start=findViewById(R.id.start);
         signUp=findViewById(R.id.signUp);
-        test=findViewById(R.id.test);
-        rank=findViewById(R.id.rank);
+
 
 //START-------------------------------------------------------------------------------------------
         start.setOnClickListener(new View.OnClickListener() {
@@ -82,24 +81,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent=new Intent(getApplicationContext(), Area.class);  //AndroidManifast.xml 등록
-                startActivity(myIntent);
-            }
-        });
-
-
-        rank.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent=new Intent(getApplicationContext(), RankInfoActivity.class);  //AndroidManifast.xml 등록
-                startActivity(myIntent);
-            }
-        });
     }
 
     @Override
