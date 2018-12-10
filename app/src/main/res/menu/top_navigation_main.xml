@@ -12,8 +12,8 @@
     <item
         android:id="@+id/action_pig"
         android:enabled="true"
-        android:icon="@drawable/ic_pig"
-        android:title="Point"
+        android:icon="@drawable/ic_hunting"
+        android:title="Hunting spot"
         app:showAsAction="ifRoom"/>
 
     <item

@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 /*
 <탭 간 터치슬라이드용>
 두개의 탭(PageOneFragment.java, PageTwoFragment.java)을 연결해주는 컨드롤 페이지
-
-
 */
 
 
@@ -45,7 +43,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return "Collection";
             case 1:
-                return "Achievment";
+                return "Achievement";
                 default:
                     return null;
         }
