@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,18 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,10 +56,14 @@ public class MainActivity extends AppCompatActivity {
     Button start, signUp, loginBtn, loginButton_fb;
     View dialogView;
     EditText nickname, nationality, detail, photo, x, y;
-    String sEmail, sPassword, sNickname, sNationality, sDetail, sPhoto="basic", sX, sY;
     EditText email, password;
     TextView textView;
     HashMap<String,String> map = new HashMap<>();
+
+    com.google.android.gms.common.SignInButton google_login_button;
+    private static final int RC_SIGN_IN = 9001;
+    private FirebaseAuth mAuth;
+    private GoogleSignInClient mGoogleSignInClient;
 
     private CallbackManager callbackManager;
 
@@ -59,6 +77,21 @@ public class MainActivity extends AppCompatActivity {
 
         start = findViewById(R.id.start);
         signUp = findViewById(R.id.signUp);
+        google_login_button = findViewById(R.id.google_login_button);
+
+        // [START config_signin]
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        // [END config_signin]
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        // [START initialize_auth]
+        mAuth = FirebaseAuth.getInstance();
+        // [END initialize_auth]
 
 //START-------------------------------------------------------------------------------------------
 
@@ -171,6 +204,14 @@ public class MainActivity extends AppCompatActivity {
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         Log.d("check", "check" + isLoggedIn);
         LoginManager.getInstance().logInWithReadPermissions(this,Arrays.asList("public_profile"));
+
+        google_login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
     }
 
 
@@ -178,7 +219,77 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+                Log.w("Check Google sign : ", "Google sign in failed", e);
+                // [START_EXCLUDE]
+                updateUI(null);
+                // [END_EXCLUDE]
+            }
+        }
     }
+
+    // [START auth_with_google]
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        Log.d("check : ", "firebaseAuthWithGoogle:" + acct.getId());
+        // [START_EXCLUDE silent]
+        // [END_EXCLUDE]
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("ck signInWithCredential", "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("ck signInWithCredential", "signInWithCredential:failure", task.getException());
+//                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+
+                        // [START_EXCLUDE]
+                        // [END_EXCLUDE]
+                    }
+                });
+    }
+    // [END auth_with_google]
+
+    private void updateUI(FirebaseUser user) {
+//        if (user != null) {
+//            mStatusTextView.setText(getString(R.string.google_status_fmt, user.getEmail()));
+//            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+//
+//            findViewById(R.id.signInButton).setVisibility(View.GONE);
+//            findViewById(R.id.signOutAndDisconnect).setVisibility(View.VISIBLE);
+//        } else {
+//            mStatusTextView.setText(R.string.signed_out);
+//            mDetailTextView.setText(null);
+//
+//            findViewById(R.id.signInButton).setVisibility(View.VISIBLE);
+//            findViewById(R.id.signOutAndDisconnect).setVisibility(View.GONE);
+//        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
 
     //서버에 데이터를 보내는 메서드
     public String login(String email, String password){
@@ -257,10 +368,5 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             return null;
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-
     }
 }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "624244920607",
+    "firebase_url": "https://sneakyspots-21ffe.firebaseio.com",
+    "project_id": "sneakyspots-21ffe",
+    "storage_bucket": "sneakyspots-21ffe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624244920607:android:a8699b003adee7b0",
+        "android_client_info": {
+          "package_name": "com.example.jypark.gazua"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624244920607-rpabtunkeroaddoaa1eg3b88u13p6gl5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jypark.gazua",
+            "certificate_hash": "4010d939edc60b808a9625866a060a2ec051bc4c"
+          }
+        },
+        {
+          "client_id": "624244920607-4mc3c7jh6geo2fjidkh72q9q5he1qaif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJC5kOVB9mGNIOf_sKBLIzBasahs48sE8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624244920607-4mc3c7jh6geo2fjidkh72q9q5he1qaif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
