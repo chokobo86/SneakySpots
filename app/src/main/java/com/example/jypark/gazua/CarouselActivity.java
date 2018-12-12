@@ -6,6 +6,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,7 +32,7 @@ public class CarouselActivity extends AppCompatActivity
 
 
     int [] sampleImages = {R.drawable.bloom,R.drawable.forest,R.drawable.man,R.drawable.modiv,R.drawable.sea,
-    R.drawable.travel};
+            R.drawable.travel};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +78,7 @@ public class CarouselActivity extends AppCompatActivity
             }
         });
 
-        TextView textView = findViewById(R.id.mTitle);
 
-        carouselView = findViewById(R.id.carouselView);
-        carouselView.setPageCount(sampleImages.length);
-        carouselView.setImageListener(imageListener);
 
     }
 
@@ -92,7 +90,7 @@ public class CarouselActivity extends AppCompatActivity
     };
 
 
-//메뉴 탭------------------------------------------------------------------------------------
+    //메뉴 탭------------------------------------------------------------------------------------
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -110,11 +108,10 @@ public class CarouselActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+
+
         } else if (id == R.id.nav_gallery) {
 
-            Intent myIntent=new Intent(getApplicationContext(), ColAchActivity.class);     // AndroidManifast.xml 등록
-            startActivity(myIntent);
 
         } else if (id == R.id.nav_manage) {
 
