@@ -26,11 +26,10 @@
         android:textSize="20dp"
         android:inputType="textEmailAddress"/>
 
-    <EditText
+    <Spinner
         android:id="@+id/NATIONALITY"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textNoSuggestions" />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="wrap_content"
