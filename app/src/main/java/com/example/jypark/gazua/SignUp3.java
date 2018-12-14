@@ -92,7 +92,8 @@ public class SignUp3 extends DialogFragment implements OnMapReadyCallback, Googl
                 .setPositiveButton("완료", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-
+                        insertUser(map);
+                        insertUserStatus(map);
                     }
                 })
                 .setNegativeButton("이전", new DialogInterface.OnClickListener() {
@@ -134,8 +135,61 @@ public class SignUp3 extends DialogFragment implements OnMapReadyCallback, Googl
                     .appendQueryParameter("nationality", (String) map.get("nationality"))
                     .appendQueryParameter("detail", (String) map.get("detail"))
                     .appendQueryParameter("photo", (String) map.get("photo"))
-                    .appendQueryParameter("x", (String) map.get("x"))
-                    .appendQueryParameter("y", (String) map.get("y"));
+                    .appendQueryParameter("x", (String) map.get("X"))
+                    .appendQueryParameter("y", (String) map.get("Y"));
+            String query = builder.build().getEncodedQuery();
+            Log.i("query : ", query);
+            Log.d("query : ", query);
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+            writer.write(query);
+
+            writer.flush();
+            writer.close();
+            os.close();
+
+            int responseCode=conn.getResponseCode();
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                System.out.println("성공");
+                String line;
+                BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((line=br.readLine()) != null) {
+                    response += line;
+                }
+            }
+            else {
+                response = "";
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    public String insertUserStatus(HashMap map){
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        URL url;
+        String response = "";
+
+        try {
+            url = new URL("http://192.168.1.86:8088/Gazua/insertUserStatus.jsp");
+            Log.i("url : ","http://192.168.1.86:8088/Gazua/insertUser.jsp");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("POST");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+            Uri.Builder builder = new Uri.Builder()
+                    .appendQueryParameter("nickname", (String) map.get("nickname"))
+                    .appendQueryParameter("loc_x", (String) map.get("X"))
+                    .appendQueryParameter("loc_y", (String) map.get("Y"));
             String query = builder.build().getEncodedQuery();
             Log.i("query : ", query);
             Log.d("query : ", query);
@@ -172,7 +226,6 @@ public class SignUp3 extends DialogFragment implements OnMapReadyCallback, Googl
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.setMyLocationEnabled(true);
         googleMap.setTrafficEnabled(true);
         googleMap.setIndoorEnabled(true);
         googleMap.setBuildingsEnabled(true);
