@@ -67,7 +67,7 @@ public class CarouselActivity extends AppCompatActivity
                         startActivity(myIntent2);
                         break;
                     case R.id.action_pig:
-                        Intent myIntent1=new Intent(getApplicationContext(), Area.class);     // AndroidManifast.xml 등록
+                        Intent myIntent1=new Intent(getApplicationContext(), Karea.class);     // AndroidManifast.xml 등록
                         startActivity(myIntent1);
                         break;
                     case R.id.action_camera:
