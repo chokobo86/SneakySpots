@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="com.example.playdata.step17_googlemap.permission.MAPS_RECEIVE"
         android:label="signature" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera2"/>
 
     <application
         android:allowBackup="true"
@@ -54,6 +56,18 @@
                 <!--<data android:scheme="@string/fb_login_protocol_scheme" />-->
             <!--</intent-filter>-->
         <!--</activity>-->
+
+
+        <!-- 카메라 기능 사용 -->
+        <provider
+            android:authorities="com.example.jypark.gazua"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 
