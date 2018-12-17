@@ -12,9 +12,9 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="42dp">
 
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -38,18 +38,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
-                <TextView
-                    android:id="@+id/mTitle"
+                <FrameLayout
+                    android:id="@+id/mainFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Daily Recommended Spots"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="20dp"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginLeft="20dp"
-                    />
+                    android:layout_height="match_parent">
+                </FrameLayout>
 
 
             </LinearLayout>
