@@ -78,8 +78,14 @@ public class CarouselActivity extends AppCompatActivity
             }
         });
 
+        /* Google Map */
+        if (savedInstanceState == null) {
 
-
+            MainFragment mainFragment = new MainFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.mainFragment, mainFragment, "main")
+                    .commit();
+        }
     }
 
     ImageListener imageListener = new ImageListener() {
