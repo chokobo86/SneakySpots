@@ -47,7 +47,7 @@ public class SignUp2 extends DialogFragment {
     TextView nationality;
     HashMap<String,String> map = null;
 
-//==================================================== photo ================================================================
+//==================================================== Photo ================================================================
     private static final int MY_PERMISSION_CAMERA = 1111;
     private static final int REQUEST_TAKE_PHOTO = 2222;
     private static final int REQUEST_TAKE_ALBUM = 3333;
@@ -103,17 +103,20 @@ public class SignUp2 extends DialogFragment {
 
 
 
-//==================================================== nickname =============================================================
+//==================================================== Nickname & Detail=====================================================
 
         nickname = view.findViewById(R.id.Nickname);
-
+        detail = view.findViewById(R.id.Detail);
 
 //==================================================== Nationality ==========================================================
+
         spinner = view.findViewById(R.id.Nationality);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("", ""+position);
+                Log.d("", ""+parent.getItemAtPosition(position));
                 parent.getItemAtPosition(position);
             }
 
@@ -134,25 +137,33 @@ public class SignUp2 extends DialogFragment {
         spinner.setAdapter(adapter);
 
 
-//==================================================== detail ===============================================================
 
-        detail = view.findViewById(R.id.Detail);
-
-
-
+//==================================================== Sign Up 3 으로 보내기 ===================================================
         dlg.setView(view)
                 .setPositiveButton("다음", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        sNickname = nickname.getText().toString();
-                        sNationality = spinner.toString();
-                        sDetail = detail.getText().toString();
-//                        sPhoto = photo.getText().toString();
+                        Log.d("imageUri11", ""+imageUri);
+                        Log.d("albumURI11", ""+albumURI);
 
+                        if(imageUri == null){
+                            sPhoto = albumURI.toString();
+                        }else{
+                            sPhoto = imageUri.toString();
+                        }
+
+                        sNickname = nickname.getText().toString();
+
+                        sNationality = spinner.getSelectedItem().toString();
+                        Log.d("123",""+sNationality);
+                        sDetail = detail.getText().toString();
+
+
+                        map.put("photo",sPhoto);
                         map.put("nickname",sNickname);
                         map.put("nationality",sNationality);
                         map.put("detail",sDetail);
-                        map.put("photo",sPhoto);
+
 
                         DialogFragment dialog3 = new SignUp3();
                         ((SignUp3) dialog3).getHashMap(map);
@@ -171,7 +182,7 @@ public class SignUp2 extends DialogFragment {
     }
 
 
-//==================================================== photo2 ================================================================
+//==================================================== Photo2 ================================================================
 
 
     private void captureCamera(){
@@ -279,6 +290,7 @@ public class SignUp2 extends DialogFragment {
                         galleryAddPic();
 
                         photo.setImageURI(imageUri);
+                        Log.d("",""+imageUri);
 
                         photo.setBackground(new ShapeDrawable(new OvalShape()));
                         if(Build.VERSION.SDK_INT >= 21) {
