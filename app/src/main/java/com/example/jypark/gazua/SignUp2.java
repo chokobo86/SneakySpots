@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
-import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,19 +26,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -105,51 +100,12 @@ public class SignUp2 extends DialogFragment {
                         .show();
             }
         });
-//        btn_capture.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                captureCamera();
-//            }
-//        });
-//
-//        btn_album.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getAlbum();
-//            }
-//        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//===========================================================================================================================
 
 
 
 //==================================================== nickname =============================================================
 
         nickname = view.findViewById(R.id.Nickname);
-
-//===========================================================================================================================
-
 
 
 //==================================================== Nationality ==========================================================
@@ -176,16 +132,11 @@ public class SignUp2 extends DialogFragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
-//===========================================================================================================================
 
 
 //==================================================== detail ===============================================================
 
         detail = view.findViewById(R.id.Detail);
-
-//===========================================================================================================================
-
-
 
 
 
@@ -219,6 +170,8 @@ public class SignUp2 extends DialogFragment {
         return dlg.create();
     }
 
+
+//==================================================== photo2 ================================================================
 
 
     private void captureCamera(){
