@@ -1,6 +1,7 @@
 package com.example.jypark.gazua;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.StrictMode;
 import android.support.v4.app.DialogFragment;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     EditText email, password;
     TextView textView;
     HashMap<String,String> map = new HashMap<>();
+    CheckBox autoLoginCheck;
 
 //    com.google.android.gms.common.SignInButton google_login_button;
 //    private static final int RC_SIGN_IN = 9001;
@@ -54,6 +57,24 @@ public class MainActivity extends AppCompatActivity {
 
         start = findViewById(R.id.start);
         signUp = findViewById(R.id.signUp);
+
+        SharedPreferences LoginInfo = getSharedPreferences("LoginInfo",0);
+        boolean loginData = LoginInfo.getBoolean("loginData", false);
+
+        if(loginData) {
+//            String SP_email = LoginInfo.getString("email", "");
+//            String SP_password = LoginInfo.getString("password", "");
+//
+//            String result = login(SP_email, SP_password);
+//            String[][] parseData = jsonParserList(result);
+//
+//            if(parseData[0][0].equals(SP_email) & parseData[0][1].equals(SP_password)) {
+                Intent myIntent = new Intent(getApplicationContext(), CarouselActivity.class);     // AndroidManifast.xml 등록
+                startActivity(myIntent);
+                Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_LONG).show();
+//            }
+        }
+
 //        google_login_button = findViewById(R.id.google_login_button);
 
         // [START config_signin]
@@ -89,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         email = dialogView.findViewById(R.id.Email);
                         password = dialogView.findViewById(R.id.Password);
+                        autoLoginCheck = dialogView.findViewById(R.id.autoLoginCheck);
 //                        textView = dialogView.findViewById(R.id.TextView);
 
                         String email_string = email.getText().toString();
@@ -99,6 +121,15 @@ public class MainActivity extends AppCompatActivity {
 
                         try{
                             if(parseData[0][0].equals(email_string) & parseData[0][1].equals(password_string)){
+                                if(autoLoginCheck.isChecked()){
+                                    SharedPreferences LoginInfo = getSharedPreferences("LoginInfo",0);
+                                    SharedPreferences.Editor editor = LoginInfo.edit();
+
+                                    editor.putBoolean("loginData",autoLoginCheck.isChecked());
+                                    editor.putString("email", email.getText().toString());
+                                    editor.putString("password", password.getText().toString());
+                                    editor.commit();
+                                }
                                 Intent myIntent = new Intent(getApplicationContext(), CarouselActivity.class);     // AndroidManifast.xml 등록
                                 startActivity(myIntent);
                                 Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_LONG).show();

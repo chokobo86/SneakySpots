@@ -33,6 +33,15 @@
         android:layout_height="wrap_content"
         android:inputType="textNoSuggestions" />
 
+    <CheckBox
+        android:text="자동 로그인"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="14dp"
+        android:id="@+id/autoLoginCheck"
+        />
+
     <Button
         android:id="@+id/LoginBtn"
         android:text="Sign In"
